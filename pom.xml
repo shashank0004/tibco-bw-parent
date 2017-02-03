@@ -20,6 +20,13 @@
     </description>
     <url>https://github.com/ChrisJaehnen/tibco-bw-parent</url>
 
+    <properties>
+        <!-- TIBCO BW Maven plugin versions -->
+        <tibco.bw.module.versioning.maven.plugin.version>1.0.0-SNAPSHOT</tibco.bw.module.versioning.maven.plugin.version>
+        <tibco.bw.profiles.maven.plugin.version>1.0.0-SNAPSHOT</tibco.bw.profiles.maven.plugin.version>
+        <tibco.bw.properties.maven.plugin.version>1.0.0-SNAPSHOT</tibco.bw.properties.maven.plugin.version>
+    </properties>
+
     <!-- SCM configuration -->
     <scm>
         <connection>${scm.connection.string}/${scm.repo}</connection>
@@ -38,6 +45,9 @@
     </dependencies>
 
     <build>
+        <!-- Defines the default standardized name format for all TIBCO BW module JARs and EARs -->
+        <finalName>${project.artifactId}_${tibco.bw.module.version}</finalName>
+
         <plugins>
             <!-- Maven TIBCO BW plugin for building TIBCO BW module JARs and EARs -->
             <plugin>
@@ -63,4 +73,41 @@
             </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <!-- Maven release profile for TIBCO BW modules -->
+        <profile>
+            <id>tibco-bw-mod-release</id>
+
+            <build>
+                <plugins>
+                    <!-- Maven Release plugin to perform Maven releases of TIBCO BW module artifacts -->
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-release-plugin</artifactId>
+                        <inherited>true</inherited>
+                        <configuration>
+                            <preparationGoals>clean install package tibco-bw-mod-versioning:version-mod -Dtibco.bw.module.version=${tibco.bw.module.version} -Dtibc.bw.module.qualifier.version=${tibco.bw.module.qualifier.version} scm:checkin -Dmessage="[Release commit by Jenkins CI]prepare release v${tibco.bw.module.version}" -DworkingDirectory=./</preparationGoals>
+                            <completionGoals>clean install package tibco-bw-mod-versioning:version-mod -Dtibco.bw.module.version=${tibco.bw.module.qualifier.version} -Dtibco.bw.module.qualifier.version=${tibco.bw.module.qualifier.version} scm:checkin -Dmessage="[Release commit by Jenkins CI]prepare for next development iteration" -DworkingDirectory=./</completionGoals>
+                        </configuration>
+                    </plugin>
+
+                    <!-- TIBCO BW Versioning Maven plugin for versioning TIBCO BW module versions -->
+                    <!--<plugin>
+                        <groupId>org.chrisjaehnen.tibco</groupId>
+                        <artifactId>tibco-bw-mod-versioning-maven-plugin</artifactId>
+                        <version>${tibco.bw.module.versioning.maven.plugin.version}</version>
+                        <executions>
+                            <execution>
+                                <phase>initialize</phase>
+                                <goals>
+                                    <goal>version-mod</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>-->
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>
