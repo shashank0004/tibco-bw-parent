@@ -1,0 +1,12 @@
+/Developer/Maven/bin/mvn org.apache.maven.plugins:maven-install-plugin:install-file \
+    -Dfile=/Developer/Dropbox/Git/tibco-bw-parent/lib/bw6-maven-plugin-1.1.0.jar \
+    -DpomFile=/Developer/Dropbox/Git/tibco-bw-parent/lib/bw6-maven-plugin-1.1.0.pom \
+    -DlocalRepositoryPath=/Developer/Data/Maven/repository
+
+/Developer/Maven/bin/mvn org.apache.maven.plugins:maven-install-plugin:install-file \
+    -Dfile=/Developer/Dropbox/Git/tibco-bw-parent/lib/com.tibco.bw.palette.shared-6.1.100.jar \
+    -DgroupId=com.tibco.bw.palette \
+    -DartifactId=com.tibco.bw.palette.shared \
+    -Dversion=6.1.100 \
+    -Dpackaging=maven-plugin \
+    -DlocalRepositoryPath=/Developer/Data/Maven/repository
