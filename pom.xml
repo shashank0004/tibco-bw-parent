@@ -1,0 +1,57 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.chrisjaehnen.openlib</groupId>
+        <artifactId>openlib-master-parent</artifactId>
+        <version>2.0.0-SNAPSHOT</version>
+    </parent>
+
+    <groupId>org.chrisjaehnen.tibco</groupId>
+    <artifactId>tibco-bw-parent</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <name>TIBCO BW Parent POM</name>
+    <description>
+        tibco-bw-parent is an Apache Maven parent POM that contains shared dependencies, properties, and plugins for
+        TIBCO BW 6 shared modules and application modules and their application package projects
+    </description>
+    <url>https://github.com/ChrisJaehnen/tibco-bw-parent</url>
+
+    <!-- SCM configuration -->
+    <scm>
+        <connection>${scm.connection.string}/${scm.repo}</connection>
+        <developerConnection>${scm.connection.string}/${scm.repo}</developerConnection>
+        <url>${scm.connection.string}/${scm.repo}</url>
+        <tag>HEAD</tag>
+    </scm>
+
+    <build>
+        <plugins>
+            <!-- Maven TIBCO BW plugin for building TIBCO BW module JARs and EARs -->
+            <plugin>
+                <groupId>org.chrisjaehnen.tibco</groupId>
+                <artifactId>tibco-bw6-maven-plugin</artifactId>
+                <version>1.1.0-SNAPSHOT</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <deployToAdmin>${deployToAdmin}</deployToAdmin>
+                    <agentHost>${agentHost}</agentHost>
+                    <agentPort>${agentPort}</agentPort>
+                    <domain>${domain}</domain>
+                    <domainDesc>${domainDesc}</domainDesc>
+                    <appSpace>${appSpace}</appSpace>
+                    <appSpaceDesc>${appSpaceDesc}</appSpaceDesc>
+                    <appNode>${appNode}</appNode>
+                    <appNodeDesc>${appNodeDesc}</appNodeDesc>
+                    <osgiPort>${osgiPort}</osgiPort>
+                    <httpPort>${httpPort}</httpPort>
+                    <redeploy>${redeploy}</redeploy>
+                    <profile>${profile}</profile>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
