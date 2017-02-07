@@ -22,9 +22,9 @@
 
     <properties>
         <!-- TIBCO BW Maven plugin versions -->
-        <tibco.bw.versioning.maven.plugin.version>1.0.0-SNAPSHOT</tibco.bw.versioning.maven.plugin.version>
-        <tibco.bw.profiles.maven.plugin.version>1.0.0-SNAPSHOT</tibco.bw.profiles.maven.plugin.version>
-        <tibco.bw.properties.maven.plugin.version>1.0.0-SNAPSHOT</tibco.bw.properties.maven.plugin.version>
+        <tibco.bw.versioning.maven.plugin.version>1.0.0</tibco.bw.versioning.maven.plugin.version>
+        <tibco.bw.profiles.maven.plugin.version>1.0.0</tibco.bw.profiles.maven.plugin.version>
+        <tibco.bw.properties.maven.plugin.version>1.0.0</tibco.bw.properties.maven.plugin.version>
     </properties>
 
     <!-- SCM configuration -->
